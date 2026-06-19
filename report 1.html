@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>Find Nomi 上报页</title>
+    <style>
+         
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "苹方", sans-serif;
+        }
+        body {
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            position: relative;
+            background-color: #ffffff;
+        }
+
+        /*左上角绿色标题*/
+        .logo-box {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            z-index: 10;
+        }
+        .logo-box span {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 210px;
+            height: 102px;
+            background-color: #026002;
+            color: #fff;
+            font-size: 37.5px;
+            font-weight: bold;
+            border-radius: 40px;
+        }
+
+        /*左侧导航栏*/
+        .sidebar-left {
+            position: absolute;
+            top: 130px;
+            left: 20px;
+            width: 210px;
+            height: 78vh;
+            background-color: #169750;
+            padding: 11px 14px;
+            border-radius: 40px;
+            overflow: hidden;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        /*黄色功能按钮*/
+        .btn-yellow {
+            background-color: #FFF1A3;
+            border-radius: 50px;
+            padding: 16px 12px;
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+        .btn-yellow img {
+            width: 32px;
+        }
+        .btn-yellow p:first-child {
+            font-size: 20px;
+            font-weight: bold;
+            color: #006800
+        }
+        .btn-yellow p:last-child {
+            font-size: 16px;
+            opacity: 0.8;
+            color: #006800
+        }
+
+        /*实时状态*/
+        .status-card {
+            background-color: #FFF1A3;
+            border-radius: 40px;
+            padding: 12px 10px;
+            margin-top: 0px;
+        }
+        .status-header {
+            display: flex;
+            align-items: center;
+            gap: 17px;
+            margin-bottom: 12px;
+        }
+        .status-header img {
+            width: 36px;
+            height: 36px;
+        }
+        .title-group p:first-child {
+            font-size: 20px;
+            font-weight: bold;
+            line-height: 1.2;
+            color: #006800
+        }
+        .title-group p:last-child {
+            font-size: 16px;
+            line-height: 1.2;
+            color: #006800
+        }
+        .status-info {
+            font-size: 14px;
+            line-height: 1.55;
+            color: #006800
+        }
+        .status-info p {
+            white-space: nowrap; 
+        }
+
+        /*右侧上报表单*/
+        .report-wrap {
+            position: absolute;
+            left: 370px;
+            top: 10px;
+            right: 20px;
+            bottom: 30px;
+            padding: 10px 40px;
+        }
+        /* 返回头部 */
+        .report-top-back {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 20px;
+            color: #555555;
+            margin-bottom: 15px;
+        }
+        .back-arrow {
+            font-size: 25px;
+        }
+        /* 图片上传框 */
+        .upload-area {
+            width: 620px;
+            height: 190px;
+            background-color: #e9e9e9;
+            border: 2px dashed #c2c2c2;
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #666666;
+            font-size: 15px;
+            line-height: 1.7;
+            margin-bottom: 35px;
+        }
+        .upload-icon {
+            font-size: 50px;
+            margin-bottom: 8px;
+            opacity: 0.6;
+        }
+        /* 表单通用项 */
+        .form-row {
+            margin-bottom: 20px;
+            width: 620px;
+        }
+        .form-label {
+            font-size: 17px;
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .form-label img {
+            width: 20px;
+            height: 20px;
+        }
+        .auto-get-location {
+            width: 100%;
+            padding: 14px;
+            background-color: #e3f9e3;
+            border: 2px solid #39b54a;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 16px;
+            color: #007000;
+        }
+        .time-input-box {
+            width: 100%;
+            padding: 14px 16px;
+            border: 1px solid #bbb;
+            border-radius: 8px;
+            font-size: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .time-input-box img {
+            width: 22px;
+            height: 22px;
+        }
+        /* 状态选择按钮组 */
+        .state-btn-group {
+            display: flex;
+            gap: 40px;
+            margin-top: 10px;
+        }
+        .state-btn {
+            padding: 12px 32px;
+            border-radius: 99px;
+            font-size: 17px;
+            border: 1px solid #ccc;
+            width: 180px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .state-btn.active {
+            background-color: #ffe666;
+            border-color: #ffbb00;
+            color: #ff2200;
+        }
+        /* 底部按钮 */
+        .bottom-btn-group {
+            margin-top: 20px;
+            display: flex;
+            gap: 20px;
+            justify-content: flex-end;
+            padding-right: 20px;
+        }
+        .btn-cancel {
+            padding: 12px 30px;
+            border: 1px solid #888;
+            border-radius: 8px;
+            font-size: 15px;
+            background: #fff;
+        }
+        .btn-submit {
+            padding: 12px 30px;
+            background-color: #169750;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 15px;
+        }
+        .goose-mark, .camera-mark {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+
+<div class="logo-box">
+    <span>Find Nomi</span>
+</div>
+
+<div class="sidebar-left">
+    <div class="btn-yellow">
+        <img src="images/icon_report.svg" alt="上报图标">
+        <div>
+            <p>上报</p>
+            <p>Report</p>
+        </div>
+    </div>
+
+    <div class="btn-yellow">
+        <img src="images/icon_heat.svg" alt="热力图图标">
+        <div>
+            <p>热力图</p>
+            <p>Heatmap</p>
+        </div>
+    </div>
+
+    <div class="btn-yellow">
+        <img src="images/icon_track.svg" alt="足迹图标">
+        <div>
+            <p>今日足迹</p>
+            <p>Trajectory</p>
+        </div>
+    </div>
+
+    <div class="status-card">
+        <div class="status-header">
+            <img src="images/icon_live.svg" alt="状态图标">
+            <div class="title-group">
+                <p>实时状态</p>
+                <p>Live Status</p>
+            </div>
+        </div>
+        <div class="status-info">
+            <p>最新位置: 图书馆前</p>
+            <p>Latest Location: Library</p>
+
+            <p>发现时间 2026-06-17</p>
+            <p>Timestamp 14:30:00</p>
+
+            <p>目击相机 Camera:</p>
+            <p>CAM_Library_01</p>
+
+            <p>当前状态: 散步</p>
+            <p>Current Condition:</p>
+            <p>Wandering</p>
+        </div>
+    </div>
+</div>
+
+<!-- 右侧上报表单 -->
+<div class="report-wrap">
+    <div class="report-top-back">
+        <span class="back-arrow">←</span>
+        <span>返回 Back</span>
+    </div>
+
+    <div class="upload-area">
+        <div class="upload-icon">🖿</div>
+        <div>点击或拖拽照片至此处上传</div>
+        <div>(Click or Drag Photo to Upload)</div>
+    </div>
+
+    <div class="form-row">
+        <div class="form-label">
+            <img src="images/icon_location.svg" alt="位置图标">
+            位置 Location
+        </div>
+        <div class="auto-get-location">自动获取当前定位 Auto-detect</div>
+    </div>
+
+    <div class="form-row">
+        <div class="form-label">
+            <img src="images/icon_time.svg" alt="时间图标">
+            时间 Timestamp
+        </div>
+        <div class="time-input-box">
+            <span></span>
+            <img src="images/icon_calendar.svg" alt="日历图标">
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="form-label">
+            <img src="images/icon_mood.svg" alt="状态图标">
+            状态 Status
+        </div>
+        <div class="state-btn-group">
+            <div class="state-btn active">散步中<br>Wandering</div>
+            <div class="state-btn">睡觉中<br>Sleeping</div>
+            <div class="state-btn">干饭中<br>Eating</div>
+        </div>
+    </div>
+
+    <div class="bottom-btn-group">
+        <button class="btn-cancel">取消 Cancel</button>
+        <button class="btn-submit">提交 Report</button>
+    </div>
+</div>
+
+</body>
+</html>

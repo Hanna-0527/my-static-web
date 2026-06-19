@@ -1,0 +1,137 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "苹方", sans-serif;
+}
+body {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+}
+
+/* 全屏地图背景层（底层） */
+.bg-map {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+.bg-map img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top left;
+}
+
+/* 左上角Find Nomi绿色标题 */
+.logo-box {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    z-index: 10;
+}
+.logo-box span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 210px;
+    height: 102px;
+    background-color: #026002;
+    color: #fff;
+    font-size: 28px;
+    font-weight: bold;
+    border-radius: 40px;
+}
+
+/* 左侧绿色侧边栏 */
+.sidebar-left {
+    position: absolute;
+    top: 140px;
+    left: 20px;
+    width: 210px;
+    height: 90vh;
+    background-color: #169750;
+    padding: 22px 16px;
+    border-radius: 24px;
+    overflow: hidden;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+/* 黄色功能按钮 */
+.btn-yellow {
+    background-color: #FFF1A3;
+    border-radius: 14px;
+    padding: 16px 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.btn-yellow img {
+    width: 32px;
+}
+.btn-yellow p:first-child {
+    font-size: 17px;
+    font-weight: 500;
+}
+.btn-yellow p:last-child {
+    font-size: 14px;
+    opacity: 0.8;
+}
+
+ 
+.status-card {
+    background-color: #FFF1A3;
+    border-radius: 14px;
+    padding: 16px 12px;
+    margin-top: 10px;
+}
+
+.status-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+}
+.status-header img {
+    width: 36px;
+    height: 36px;
+}
+.title-group p:first-child {
+    font-size: 22px;
+    font-weight: bold;
+    line-height: 1.2;
+}
+.title-group p:last-child {
+    font-size: 20px;
+    line-height: 1.2;
+}
+
+.status-info {
+    font-size: 14px;
+    line-height: 1.55;
+}
+.status-info p {
+    white-space: nowrap; 
+}
+
+/* 地图悬浮标记：大鹅 */
+.goose-mark {
+    position: absolute;
+    top: 42%;
+    left: 48%;
+    width: 55px;
+    z-index: 5;
+}
+/* 相机点位通用样式 */
+.camera-mark {
+    position: absolute;
+    width: 36px;
+    z-index: 5;
+}

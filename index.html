@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>Find Nomi</title>
+    <style>
+         
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "苹方", sans-serif;
+        }
+        body {
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .bg-map {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 1;
+        }
+        .bg-map img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top left;
+        }
+
+        /* 左上角绿色标题 */
+        .logo-box {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            z-index: 10;
+        }
+        .logo-box span {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 210px;
+            height: 102px;
+            background-color: #026002;
+            color: #fff;
+            font-size: 37.5px;
+            font-weight: bold;
+            border-radius: 40px;
+        }
+
+        /* 左侧导航栏 */
+        .sidebar-left {
+            position: absolute;
+            top: 140px;
+            left: 20px;
+            width: 210px;
+            height: 78vh;
+            background-color: #169750;
+            padding: 11px 14px;
+            border-radius: 40px;
+            overflow: hidden;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        /* 黄色功能按钮 */
+        .btn-yellow {
+            background-color: #FFF1A3;
+            border-radius: 50px;
+            padding: 16px 12px;
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+        .btn-yellow img {
+            width: 32px;
+        }
+        .btn-yellow p:first-child {
+            font-size: 20px;
+            font-weight: bold;
+            color: #006800
+        }
+        .btn-yellow p:last-child {
+            font-size: 16px;
+            opacity: 0.8;
+            color: #006800
+        }
+
+        /* 实时状态 */
+        .status-card {
+            background-color: #FFF1A3;
+            border-radius: 40px;
+            padding: 12px 10px;
+            margin-top: 0px;
+        }
+        /* 图标 + 文字 */
+        .status-header {
+            display: flex;
+            align-items: center;
+            gap: 17px;
+            margin-bottom: 12px;
+        }
+        .status-header img {
+            width: 36px;
+            height: 36px;
+        }
+        .title-group p:first-child {
+            font-size: 20px;
+            font-weight: bold;
+            line-height: 1.2;
+            color: #006800
+        }
+        .title-group p:last-child {
+            font-size: 16px;
+            line-height: 1.2;
+            color: #006800
+        }
+        /* 下方信息区 */
+        .status-info {
+            font-size: 14px;
+            line-height: 1.55;
+            color: #006800
+        }
+        .status-info p {
+            white-space: nowrap; 
+        }
+
+        .goose-mark {
+            position: absolute;
+            top: 42%;
+            left: 48%;
+            width: 55px;
+            z-index: 5;
+        }
+
+        .camera-mark {
+            position: absolute;
+            width: 36px;
+            z-index: 5;
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-map">
+        <img src="images/campus.png" alt="校园底图">
+    </div>
+
+    <div class="logo-box">
+        <span>Find Nomi</span>
+    </div>
+
+    <div class="sidebar-left">
+        <!-- 上报按钮 -->
+        <div class="btn-yellow">
+            <img src="images/icon_report.svg" alt="上报图标">
+            <div>
+                <p>上报</p>
+                <p>Report</p>
+            </div>
+        </div>
+        <!-- 热力图按钮 -->
+        <div class="btn-yellow">
+            <img src="images/icon_heat.svg" alt="热力图图标">
+            <div>
+                <p>热力图</p>
+                <p>Heatmap</p>
+            </div>
+        </div>
+        <!-- 今日足迹按钮 -->
+        <div class="btn-yellow">
+            <img src="images/icon_track.svg" alt="足迹图标">
+            <div>
+                <p>今日足迹</p>
+                <p>Trajectory</p>
+            </div>
+        </div>
+
+        <!-- 实时状态卡片【最终排版匹配你的截图】 -->
+        <div class="status-card">
+            <div class="status-header">
+                <img src="images/icon_live.svg" alt="状态图标">
+                <div class="title-group">
+                    <p>实时状态</p>
+                    <p>Live Status</p>
+                </div>
+            </div>
+            <div class="status-info">
+                <p>最新位置: 图书馆前</p>
+                <p>Latest Location: Library</p>
+
+                <p>发现时间 2026-06-17</p>
+                <p>Timestamp 14:30:00</p>
+
+                <p>目击相机 Camera:</p>
+                <p>CAM_Library_01</p>
+
+                <p>当前状态: 散步</p>
+                <p>Current Condition:</p>
+                <p>Wandering</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 地图上悬浮元素：大鹅 + 6个相机点位 -->
+    <img class="goose-mark" src="images/goose_icon.svg" alt="大鹅">
+    <img class="camera-mark" src="images/camera_marker.svg" style="top:32%;left:58%;">
+    <img class="camera-mark" src="images/camera_marker.svg" style="top:44%;left:53%;">
+    <img class="camera-mark" src="images/camera_marker.svg" style="top:49%;left:42%;">
+    <img class="camera-mark" src="images/camera_marker.svg" style="top:54%;left:50%;">
+    <img class="camera-mark" src="images/camera_marker.svg" style="top:60%;left:56%;">
+    <img class="camera-mark" src="images/camera_marker.svg" style="top:70%;left:53%;">
+</body>
+</html>
